@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bank of Kigali – Concept Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f8fc;--surface:#fff;--ink:#12233a;--muted:#55657d;--line:#d9e2ee;--blue:#0f4c8a;--blue-d:#0a3562;--sun:#f2b61c;--leaf:#2c8a57;--err:#b3261e;--on-blue:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1624;--surface:#142238;--ink:#e8eef7;--muted:#9fb0c7;--line:#26405f;--blue:#5aa2e8;--blue-d:#0a3562;--sun:#f2b61c;--leaf:#4fc088;--err:#ff8a80;--on-blue:#06192e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1624;--surface:#142238;--ink:#e8eef7;--muted:#9fb0c7;--line:#26405f;--blue:#5aa2e8;--blue-d:#0a3562;--sun:#f2b61c;--leaf:#4fc088;--err:#ff8a80;--on-blue:#06192e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:700}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem)}
+h3{font-size:1.15rem}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.banner{background:var(--sun);color:#2a2000;font-size:.85rem;text-align:center;padding:8px 16px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{font-family:Fraunces,serif;font-weight:700;font-size:1.25rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark{width:30px;height:30px;border-radius:8px;background:var(--blue);display:grid;place-items:center}
+.mark i{display:block;width:12px;height:12px;border-radius:50%;background:var(--sun)}
+nav{display:flex;gap:20px;align-items:center;overflow-x:auto}
+nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;white-space:nowrap}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:12px 20px;font:600 1rem "Public Sans",sans-serif;cursor:pointer;text-decoration:none;background:var(--blue);color:var(--on-blue)}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.hero{background:var(--blue-d);color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero p{font-size:1.1rem;max-width:46ch;color:#d6e4f5}
+.hero .btn{background:var(--sun);color:#2a2000}
+.hero .btn.alt{background:transparent;color:#fff;border-color:#ffffff66}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.rate{background:#ffffff14;border:1px solid #ffffff2a;border-radius:16px;padding:22px}
+.rate h3{color:#fff;font-size:1rem;font-family:"Public Sans",sans-serif;font-weight:600}
+.rate table{width:100%;border-collapse:collapse;font-size:.95rem}
+.rate td{padding:8px 0;border-top:1px solid #ffffff22}
+.rate td:last-child{text-align:right;font-weight:600}
+.rate small{color:#b9cde6}
+.band{height:6px;background:linear-gradient(90deg,var(--blue) 0 33%,var(--sun) 33% 66%,var(--leaf) 66%)}
+section{padding:60px 0}
+.lead{color:var(--muted);max-width:60ch;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.ico{width:40px;height:40px;border-radius:10px;background:color-mix(in srgb,var(--blue) 15%,transparent);display:grid;place-items:center;margin-bottom:12px;font-size:1.2rem}
+.open{background:var(--surface);border-block:1px solid var(--line)}
+.open .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+.steps{display:flex;gap:8px;margin-bottom:20px}
+.steps span{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.steps span.on{background:var(--blue)}
+form{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:14px}
+input,select{width:100%;margin-top:6px;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:400 1rem "Public Sans",sans-serif}
+input.bad,select.bad{border-color:var(--err)}
+.err{color:var(--err);font-size:.82rem;font-weight:500;min-height:0;display:block;margin-top:4px}
+.hint{color:var(--muted);font-size:.85rem;margin:0 0 14px}
+.pick{display:grid;gap:10px;margin-bottom:14px}
+.pick label{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:14px;margin:0;cursor:pointer;background:var(--surface);font-weight:500}
+.pick input{width:auto;margin:4px 0 0}
+.pick label:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--surface))}
+.pick b{display:block}
+.pick span{color:var(--muted);font-size:.88rem;font-weight:400}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
+.done{text-align:center;padding:12px 0}
+.ref{font-family:Fraunces,serif;font-size:1.8rem;letter-spacing:.04em;color:var(--blue);margin:8px 0 14px}
+.tick{width:56px;height:56px;border-radius:50%;background:var(--leaf);color:#fff;display:grid;place-items:center;font-size:1.8rem;margin:0 auto 12px}
+.branches li{padding:12px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.branches{list-style:none;margin:0;padding:0;max-width:640px}
+.branches span{color:var(--muted);text-align:right}
+details{border-top:1px solid var(--line);padding:14px 0;max-width:720px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--muted);margin:8px 0 0}
+footer{background:var(--blue-d);color:#c4d6ec;padding:32px 0;font-size:.88rem}
+@media (max-width:760px){.hero .wrap,.open .wrap{grid-template-columns:1fr}.row{grid-template-columns:1fr}nav a:not(.btn){display:none}.branches li{flex-direction:column;gap:2px}.branches span{text-align:left}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="banner">Concept prototype only. Not the official Bank of Kigali website. Nothing you enter here is sent or saved.</div>
+<header><div class="wrap">
+<a class="brand" href="#top"><span class="mark"><i></i></span>Bank of Kigali</a>
+<nav aria-label="Main"><a href="#services">Services</a><a href="#branches">Branches</a><a href="#faq">FAQ</a><a class="btn" href="#open">Open an account</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<div>
+<h1>Banking that starts from your phone</h1>
+<p>Open a savings or current account in about five minutes, then visit your nearest branch to verify your ID and collect your card.</p>
+<div class="hero-actions"><a class="btn" href="#open">Open an account</a><a class="btn alt" href="#services">See our services</a></div>
+</div>
+<aside class="rate" aria-label="Sample exchange rates">
+<h3>Sample exchange rates (RWF)</h3>
+<table><tr><td>1 USD</td><td>1,450</td></tr><tr><td>1 EUR</td><td>1,580</td></tr><tr><td>1 KES</td><td>11.2</td></tr></table>
+<small>Illustrative numbers only.</small>
+</aside>
+</div></div>
+<div class="band"></div>
+
+<section id="services"><div class="wrap">
+<h2>What we can do for you</h2>
+<p class="lead">Everyday accounts, credit when you need it, and tools to manage money from anywhere.</p>
+<div class="grid">
+<div class="card"><div class="ico">🏦</div><h3>Savings accounts</h3><p>Earn interest, save toward a goal, and withdraw when you need to.</p></div>
+<div class="card"><div class="ico">💳</div><h3>Current accounts</h3><p>Receive salary, pay bills, and get a debit card for daily spending.</p></div>
+<div class="card"><div class="ico">🏠</div><h3>Loans</h3><p>Personal, home, and education loans with clear repayment schedules.</p></div>
+<div class="card"><div class="ico">📱</div><h3>Mobile banking</h3><p>Check balances, send money, and buy airtime from your phone.</p></div>
+<div class="card"><div class="ico">🏪</div><h3>Business banking</h3><p>Accounts, payroll, and working-capital loans for small and growing firms.</p></div>
+<div class="card"><div class="ico">🌍</div><h3>Foreign exchange</h3><p>Send and receive money across borders with transparent rates.</p></div>
+</div>
+</div></section>
+
+<section id="open" class="open"><div class="wrap">
+<div>
+<h2>Open your account online</h2>
+<p class="lead">Fill in three short steps. You will get a reference number to bring to the branch with your national ID.</p>
+<p class="hint">You will need: your national ID number, phone number, and a few details about your work.</p>
+</div>
+<form id="f" novalidate>
+<div class="steps" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+
+<div data-step="0">
+<h3>About you</h3>
+<div class="row">
+<label>First name<input name="first" autocomplete="given-name" required><span class="err"></span></label>
+<label>Last name<input name="last" autocomplete="family-name" required><span class="err"></span></label>
+</div>
+<div class="row">
+<label>Date of birth<input type="date" name="dob" required><span class="err"></span></label>
+<label>National ID number<input name="nid" inputmode="numeric" maxlength="16" placeholder="16 digits" required><span class="err"></span></label>
+</div>
+<div class="row">
+<label>Phone number<input name="phone" inputmode="tel" autocomplete="tel" placeholder="07XX XXX XXX" required><span class="err"></span></label>
+<label>Email (optional)<input type="email" name="email" autocomplete="email"><span class="err"></span></label>
+</div>
+</div>
+
+<div data-step="1" hidden>
+<h3>Choose an account</h3>
+<div class="pick">
+<label><input type="radio" name="type" value="Savings" checked><div><b>Savings account</b><span>Earns interest. Best for building a safety net.</span></div></label>
+<label><input type="radio" name="type" value="Current"><div><b>Current account</b><span>Salary and daily payments, with a debit card.</span></div></label>
+<label><input type="radio" name="type" value="Student"><div><b>Student account</b><span>No monthly fee. Requires a student ID.</span></div></label>
+</div>
+<label>Preferred branch<select name="branch" required><option value="">Select a branch</option><option>Kigali City Tower, Nyarugenge</option><option>Remera, Gasabo</option><option>Kimironko, Gasabo</option><option>Nyabugogo, Nyarugenge</option><option>Kicukiro Centre</option></select><span class="err"></span></label>
+</div>
+
+<div data-step="2" hidden>
+<h3>Review and confirm</h3>
+<p class="hint">Check your details. You can go back to change anything.</p>
+<div class="card" id="review" style="margin-bottom:14px"></div>
+<label style="display:flex;gap:10px;font-weight:500"><input type="checkbox" name="agree" style="width:auto;margin:4px 0 0"><span>I confirm these details are correct and agree to the terms and privacy notice.<span class="err"></span></span></label>
+</div>
+
+<div class="nav"><button type="button" class="btn alt" id="back" hidden>Back</button><button type="submit" class="btn" id="next" style="margin-left:auto">Continue</button></div>
+</form>
+<div id="success" class="card done" hidden style="grid-column:2">
+<div class="tick" aria-hidden="true">✓</div>
+<h3>Application received</h3>
+<div>Your reference number</div>
+<div class="ref" id="refno"></div>
+<p>Bring this number and your original national ID to <b id="bname"></b> within 14 days to finish opening your account.</p>
+<p class="hint" style="margin-top:12px">This is a demo, so no real application was made.</p>
+<button class="btn alt" id="again" type="button">Start another</button>
+</div>
+</div></section>
+
+<section id="branches"><div class="wrap">
+<h2>Find a branch in Kigali</h2>
+<p class="lead">Sample locations for this prototype. Hours are typically Monday to Friday, 8:00 to 17:00.</p>
+<ul class="branches">
+<li><b>Kigali City Tower</b><span>Nyarugenge</span></li>
+<li><b>Remera</b><span>Gasabo</span></li>
+<li><b>Kimironko</b><span>Gasabo</span></li>
+<li><b>Nyabugogo</b><span>Nyarugenge</span></li>
+<li><b>Kicukiro Centre</b><span>Kicukiro</span></li>
+</ul>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+<h2>Common questions</h2>
+<details><summary>Can I open an account without visiting a branch?</summary><p>In this concept, you start online and finish at a branch where staff verify your ID in person.</p></details>
+<details><summary>What documents do I need?</summary><p>Your original national ID and the reference number from your application. Students also bring a student ID.</p></details>
+<details><summary>Is there a minimum opening deposit?</summary><p>This prototype does not set real fees or minimums. Final amounts would come from the bank.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">Concept design for demonstration. Not affiliated with or endorsed by Bank of Kigali. For real banking, visit the bank’s official website or a branch.</div></footer>
+
+<script>
+(function(){
+var f=document.getElementById('f'),steps=[].slice.call(f.querySelectorAll('[data-step]')),bars=f.querySelectorAll('.steps span'),
+next=document.getElementById('next'),back=document.getElementById('back'),s=0;
+function show(n){s=n;steps.forEach(function(el,i){el.hidden=i!==n});bars.forEach(function(b,i){b.className=i<=n?'on':''});
+back.hidden=n===0;next.textContent=n===2?'Submit application':'Continue';if(n===2)review()}
+function setErr(el,msg){var e=el.closest('label').querySelector('.err');e.textContent=msg||'';el.classList.toggle('bad',!!msg);return !msg}
+function check(){var ok=true,F=f.elements;
+if(s===0){
+ok=setErr(F.first,F.first.value.trim()?'':'Enter your first name.')&ok;
+ok=setErr(F.last,F.last.value.trim()?'':'Enter your last name.')&ok;
+var d=F.dob.value,age=d?(Date.now()-new Date(d))/31557600000:0;
+ok=setErr(F.dob,!d?'Enter your date of birth.':age<16?'You must be at least 16 to open an account.':'')&ok;
+ok=setErr(F.nid,/^\d{16}$/.test(F.nid.value.replace(/\s/g,''))?'':'National ID must be 16 digits.')&ok;
+ok=setErr(F.phone,/^(\+?250|0)?7\d{8}$/.test(F.phone.value.replace(/[\s-]/g,''))?'':'Enter a valid Rwandan mobile number, like 0788 123 456.')&ok;
+ok=setErr(F.email,!F.email.value||/^\S+@\S+\.\S+$/.test(F.email.value)?'':'Enter a valid email address.')&ok}
+if(s===1)ok=setErr(F.branch,F.branch.value?'':'Choose a branch.')&ok;
+if(s===2){var e=F.agree.closest('label').querySelector('.err');e.textContent=F.agree.checked?'':'Tick the box to continue.';ok=F.agree.checked}
+return ok}
+function review(){var F=f.elements,r=[['Name',F.first.value+' '+F.last.value],['Phone',F.phone.value],['Account',F.type.value.toString()+' account'],['Branch',F.branch.value]];
+var box=document.getElementById('review');box.textContent='';
+r.forEach(function(x){var p=document.createElement('p');p.style.margin='4px 0';var b=document.createElement('b');b.textContent=x[0]+': ';p.appendChild(b);p.appendChild(document.createTextNode(x[1]));box.appendChild(p)})}
+f.addEventListener('submit',function(ev){ev.preventDefault();if(!check())return;
+if(s<2){show(s+1);return}
+var ref='BK-'+Math.random().toString(36).slice(2,8).toUpperCase()+'-'+String(Date.now()).slice(-4);
+document.getElementById('refno').textContent=ref;document.getElementById('bname').textContent=f.elements.branch.value;
+f.hidden=true;var sc=document.getElementById('success');sc.hidden=false;sc.scrollIntoView({block:'center'})});
+back.addEventListener('click',function(){show(s-1)});
+document.getElementById('again').addEventListener('click',function(){f.reset();f.hidden=false;document.getElementById('success').hidden=true;
+f.querySelectorAll('.bad').forEach(function(x){x.classList.remove('bad')});show(0)});
+if(window.matchMedia('(max-width:760px)').matches)document.getElementById('success').style.gridColumn='auto';
+})();
+</script>
+</body>
+</html>
